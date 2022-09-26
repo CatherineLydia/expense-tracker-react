@@ -1,10 +1,10 @@
 import './App.css';
-import Balance from './components/BalanceComponent';
+import ExpenseTrackerPage from './components/ExpenseTrackerPage';
 
 function App() {
   return (
     <div className="App">
-      <Balance />
+      <ExpenseTrackerPage />
     </div>
   );
 }

@@ -1,11 +1,14 @@
+import { Row } from "reactstrap";
+
 const Balance = () => {
     return (
         <>
-            <h1>Expense Tracker</h1>
-            <div>
+            <Row>
                 <p>Balance</p>
-                <div>$0</div>
-            </div>
+            </Row>
+            <Row>
+                <p>$0</p>
+            </Row>
         </>
     )
 
