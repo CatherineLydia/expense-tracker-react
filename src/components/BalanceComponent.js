@@ -1,13 +1,13 @@
 import { Row } from "reactstrap";
 
-const Balance = () => {
+const Balance = (props) => {
     return (
         <>
             <Row>
                 <p>Balance</p>
             </Row>
             <Row>
-                <p>$0</p>
+                <p>${props.incomeAmt - props.expenseAmt}</p>
             </Row>
         </>
     )

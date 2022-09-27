@@ -1,6 +1,6 @@
 import { Row,Col,Container } from "reactstrap";
 
-const IncomeExpense = () => {
+const IncomeExpense = (props) => {
     return (
         <Container>
                 <Row style={{border:"1px solid blue",alignContent:"start",padding:"10px",marginTop:"10%"}}>
@@ -9,7 +9,7 @@ const IncomeExpense = () => {
                             Income
                         </div>
                         <div>
-                            $0
+                            ${props.incomeAmt}
                         </div>
                     </Col>
                     <Col xs="6" style={{ color: "red" }}>
@@ -17,7 +17,7 @@ const IncomeExpense = () => {
                             Expense
                         </div>
                         <div>
-                            $0
+                            ${props.expenseAmt}
                         </div>
                     </Col>
                 </Row>
