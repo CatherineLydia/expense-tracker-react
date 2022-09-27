@@ -6,6 +6,7 @@ import IncomeExpense from "./IncomeExpenseComponent"
 const ExpenseTrackerPage = () => {
     const [incomeAmt, setIncomeAmt] = useState(100);
     const [expenseAmt, setExpenseAmt] = useState(50);
+
     return (
         <Container>
             <Row style={{marginTop:"5%"}}>
@@ -15,7 +16,8 @@ const ExpenseTrackerPage = () => {
                 <Balance incomeAmt={incomeAmt} expenseAmt={expenseAmt}/>
             </Row>
             <Row>
-                <IncomeExpense incomeAmt={incomeAmt} expenseAmt={expenseAmt} />
+                <IncomeExpense incomeAmt={incomeAmt} expenseAmt={expenseAmt}
+                                setIncomeAmt={setIncomeAmt} setExpenseAmt={setExpenseAmt}/>
             </Row>
         </Container>
     )

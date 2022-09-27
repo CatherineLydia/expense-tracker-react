@@ -4,7 +4,7 @@ const IncomeExpense = (props) => {
     return (
         <Container>
                 <Row style={{border:"1px solid blue",alignContent:"start",padding:"10px",marginTop:"10%"}}>
-                    <Col xs="6" style={{ color: "green" }}>
+                <Col xs="6" style={{ color: "green" }} onClick={() => {props.setIncomeAmt((amt)=> amt+100)}}>
                         <div>
                             Income
                         </div>
@@ -12,7 +12,7 @@ const IncomeExpense = (props) => {
                             ${props.incomeAmt}
                         </div>
                     </Col>
-                    <Col xs="6" style={{ color: "red" }}>
+                    <Col xs="6" style={{ color: "red" }} onClick={() => {props.setExpenseAmt((amt)=> amt+50)}}>
                         <div>
                             Expense
                         </div>
