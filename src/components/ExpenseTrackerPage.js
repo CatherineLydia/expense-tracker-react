@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Container, Row } from "reactstrap"
+import AddTransaction from "./AddTransactionComponent"
 import Balance from "./BalanceComponent"
 import IncomeExpense from "./IncomeExpenseComponent"
 
@@ -18,6 +19,9 @@ const ExpenseTrackerPage = () => {
             <Row>
                 <IncomeExpense incomeAmt={incomeAmt} expenseAmt={expenseAmt}
                                 setIncomeAmt={setIncomeAmt} setExpenseAmt={setExpenseAmt}/>
+            </Row>
+            <Row style={{marginTop:"10%"}}>
+                <AddTransaction setIncomeAmt={setIncomeAmt} setExpenseAmt={setExpenseAmt} />
             </Row>
         </Container>
     )
