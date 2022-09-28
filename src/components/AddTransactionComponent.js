@@ -1,8 +1,19 @@
-import { useContext, useState } from "react";
+import { useContext, useReducer, useState } from "react";
 import { Button,Modal, ModalBody, ModalFooter, ModalHeader,Input,Form,Row,Col} from "reactstrap";
 import { SetExpenseContext, SetIncomeContext } from "./ExpenseTrackerPage";
 
-const TransactionModal = ({trnxModal,toggleTrnxModal}) => {
+const initialTrnxList = [];
+
+const reducer = (state, action) => {
+    switch (action.type) {
+        case "ADD_TRANSACTION":
+            return [...state, action.payload]
+        default:
+            return state;
+    }
+}
+
+const TransactionModal = ({ trnxModal, toggleTrnxModal, addTransaction }) => {
 
     const [formInput, setFormInput] = useState({
         comment: "",
@@ -25,6 +36,7 @@ const TransactionModal = ({trnxModal,toggleTrnxModal}) => {
         } else if (formInput.trnxType === "expense") {
             setExpenseAmt((expenseAmt) => expenseAmt + parseInt(formInput.amount));
         }
+        addTransaction(formInput);
         toggleTrnxModal();
     }
 
@@ -68,6 +80,12 @@ const AddTransaction = () => {
 
     const [trnxModal, setTrnxModal] = useState(false);
 
+    const [trnxList, dispatch] = useReducer(reducer, initialTrnxList);
+
+    const addTransaction = (trnx) => {
+        dispatch({ type: "ADD_TRANSACTION", payload: trnx });
+    };
+
     const toggleTrnxModal = () => {
         setTrnxModal((prevState)=> !prevState)
     }
@@ -75,7 +93,7 @@ const AddTransaction = () => {
     return (
         <div>
             <Button color="primary" onClick={() => toggleTrnxModal()}>ADD TRANSACTION</Button>
-            <TransactionModal trnxModal={trnxModal} toggleTrnxModal={toggleTrnxModal}/>
+            <TransactionModal trnxModal={trnxModal} toggleTrnxModal={toggleTrnxModal} addTransaction={addTransaction} />
         </div>
     );
 }
