@@ -1,8 +1,11 @@
-import { useState } from "react"
+import { createContext, useState } from "react"
 import { Container, Row } from "reactstrap"
 import AddTransaction from "./AddTransactionComponent"
 import Balance from "./BalanceComponent"
 import IncomeExpense from "./IncomeExpenseComponent"
+
+export const SetIncomeContext = createContext();
+export const SetExpenseContext = createContext();
 
 const ExpenseTrackerPage = () => {
     const [incomeAmt, setIncomeAmt] = useState(100);
@@ -20,8 +23,12 @@ const ExpenseTrackerPage = () => {
                 <IncomeExpense incomeAmt={incomeAmt} expenseAmt={expenseAmt}
                                 setIncomeAmt={setIncomeAmt} setExpenseAmt={setExpenseAmt}/>
             </Row>
-            <Row style={{marginTop:"10%"}}>
-                <AddTransaction setIncomeAmt={setIncomeAmt} setExpenseAmt={setExpenseAmt} />
+            <Row style={{ marginTop: "10%" }}>
+                <SetIncomeContext.Provider value={setIncomeAmt}>
+                    <SetExpenseContext.Provider value={setExpenseAmt}>
+                        <AddTransaction />
+                    </SetExpenseContext.Provider>
+                </SetIncomeContext.Provider>
             </Row>
         </Container>
     )

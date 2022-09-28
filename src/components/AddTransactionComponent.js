@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button,Modal, ModalBody, ModalFooter, ModalHeader,Input,Form,Row,Col} from "reactstrap";
+import { SetExpenseContext, SetIncomeContext } from "./ExpenseTrackerPage";
 
 const TransactionModal = (props) => {
 
@@ -9,8 +10,10 @@ const TransactionModal = (props) => {
         trnxType:"income"
     })
 
+    const setIncomeAmt = useContext(SetIncomeContext);
+    const setExpenseAmt = useContext(SetExpenseContext);
+
     const handleChange = (e) => {
-        console.log(e.target.name + " : " + e.target.value);
         setFormInput({...formInput, [e.target.name]: e.target.value})
     }
 
@@ -18,9 +21,9 @@ const TransactionModal = (props) => {
         e.preventDefault();
         console.log(JSON.stringify(formInput));
         if (formInput.trnxType === "income") {
-            props.setIncomeAmt((incomeAmt) => incomeAmt + parseInt(formInput.amount));
+            setIncomeAmt((incomeAmt) => incomeAmt + parseInt(formInput.amount));
         } else if (formInput.trnxType === "expense") {
-            props.setExpenseAmt((expenseAmt) => expenseAmt + parseInt(formInput.amount));
+            setExpenseAmt((expenseAmt) => expenseAmt + parseInt(formInput.amount));
         }
         props.toggleTrnxModal();
     }
@@ -61,7 +64,7 @@ const TransactionModal = (props) => {
     )
 }
 
-const AddTransaction = (props) => {
+const AddTransaction = () => {
 
     const [trnxModal, setTrnxModal] = useState(false);
 
@@ -72,8 +75,7 @@ const AddTransaction = (props) => {
     return (
         <div>
             <Button color="primary" onClick={() => toggleTrnxModal()}>ADD TRANSACTION</Button>
-            <TransactionModal trnxModal={trnxModal} toggleTrnxModal={toggleTrnxModal}
-                            setIncomeAmt={props.setIncomeAmt} setExpenseAmt={props.setExpenseAmt}/>
+            <TransactionModal trnxModal={trnxModal} toggleTrnxModal={toggleTrnxModal}/>
         </div>
     );
 }
