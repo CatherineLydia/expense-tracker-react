@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Button,Modal, ModalBody, ModalFooter, ModalHeader,Input,Form,Row,Col} from "reactstrap";
 import { SetExpenseContext, SetIncomeContext } from "./ExpenseTrackerPage";
 
-const TransactionModal = (props) => {
+const TransactionModal = ({trnxModal,toggleTrnxModal}) => {
 
     const [formInput, setFormInput] = useState({
         comment: "",
@@ -25,14 +25,14 @@ const TransactionModal = (props) => {
         } else if (formInput.trnxType === "expense") {
             setExpenseAmt((expenseAmt) => expenseAmt + parseInt(formInput.amount));
         }
-        props.toggleTrnxModal();
+        toggleTrnxModal();
     }
 
     return (
         <>
-            <Modal isOpen={props.trnxModal} toggle={props.toggleTrnxModal}>
+            <Modal isOpen={trnxModal} toggle={toggleTrnxModal}>
                 <Form onSubmit={handleSubmit}>
-                    <ModalHeader toggle={props.toggleTrnxModal}>
+                    <ModalHeader toggle={toggleTrnxModal}>
                         Add Transaction
                     </ModalHeader>
                     <ModalBody>

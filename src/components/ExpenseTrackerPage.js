@@ -20,8 +20,7 @@ const ExpenseTrackerPage = () => {
                 <Balance incomeAmt={incomeAmt} expenseAmt={expenseAmt}/>
             </Row>
             <Row>
-                <IncomeExpense incomeAmt={incomeAmt} expenseAmt={expenseAmt}
-                                setIncomeAmt={setIncomeAmt} setExpenseAmt={setExpenseAmt}/>
+                <IncomeExpense incomeAmt={incomeAmt} expenseAmt={expenseAmt}/>
             </Row>
             <Row style={{ marginTop: "10%" }}>
                 <SetIncomeContext.Provider value={setIncomeAmt}>

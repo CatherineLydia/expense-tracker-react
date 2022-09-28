@@ -1,23 +1,23 @@
 import { Row,Col,Container } from "reactstrap";
 
-const IncomeExpense = (props) => {
+const IncomeExpense = ({incomeAmt,expenseAmt}) => {
     return (
         <Container>
                 <Row style={{border:"1px solid blue",alignContent:"start",padding:"10px",marginTop:"10%"}}>
-                <Col xs="6" style={{ color: "green" }} onClick={() => {props.setIncomeAmt((amt)=> amt+100)}}>
+                <Col xs="6" style={{ color: "green" }}>
                         <div>
                             Income
                         </div>
                         <div>
-                            ${props.incomeAmt}
+                            ${incomeAmt}
                         </div>
                     </Col>
-                    <Col xs="6" style={{ color: "red" }} onClick={() => {props.setExpenseAmt((amt)=> amt+50)}}>
+                    <Col xs="6" style={{ color: "red" }}>
                         <div>
                             Expense
                         </div>
                         <div>
-                            ${props.expenseAmt}
+                            ${expenseAmt}
                         </div>
                     </Col>
                 </Row>
