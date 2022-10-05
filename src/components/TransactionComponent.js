@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { createContext, useReducer } from "react";
 import { Container,Row } from "reactstrap"
 import AddTransaction from "./AddTransactionComponent"
 import ShowTransaction from "./ShowTransactionComponent";
@@ -14,6 +14,8 @@ const reducer = (state, action) => {
     }
 };
 
+export const TrnxListContext = createContext();
+
 const Transaction = () => {
 
     const [trnxList, dispatch] = useReducer(reducer, initialTrnxList);
@@ -25,10 +27,14 @@ const Transaction = () => {
     return (
         <Container>
             <Row style={{ margin: "5%" }}>
-                <AddTransaction addTransaction={addTransaction}/>
+                <TrnxListContext.Provider value={trnxList}>
+                    <AddTransaction addTransaction={addTransaction} />
+                </TrnxListContext.Provider>
             </Row>
             <Row style={{ margin: "5%" }}>
-                <ShowTransaction trnxList={trnxList}/>
+                <TrnxListContext.Provider value={trnxList}>
+                    <ShowTransaction />
+                </TrnxListContext.Provider>
             </Row>
         </Container>
     );

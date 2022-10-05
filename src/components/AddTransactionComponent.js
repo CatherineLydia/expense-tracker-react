@@ -1,10 +1,12 @@
 import { useContext, useState } from "react";
 import { Button,Modal, ModalBody, ModalFooter, ModalHeader,Input,Form,Row,Col} from "reactstrap";
 import { SetExpenseContext, SetIncomeContext } from "./ExpenseTrackerPage";
+import { TrnxListContext } from "./TransactionComponent";
 
 const TransactionModal = ({ trnxModal, toggleTrnxModal, addTransaction }) => {
 
     const [formInput, setFormInput] = useState({
+        id:0,
         comment: "",
         amount: 0,
         trnxType:"income"
@@ -12,6 +14,7 @@ const TransactionModal = ({ trnxModal, toggleTrnxModal, addTransaction }) => {
 
     const setIncomeAmt = useContext(SetIncomeContext);
     const setExpenseAmt = useContext(SetExpenseContext);
+    const trnxList = useContext(TrnxListContext);
 
     const handleChange = (e) => {
         setFormInput({...formInput, [e.target.name]: e.target.value})
@@ -25,7 +28,7 @@ const TransactionModal = ({ trnxModal, toggleTrnxModal, addTransaction }) => {
         } else if (formInput.trnxType === "expense") {
             setExpenseAmt((expenseAmt) => expenseAmt + parseInt(formInput.amount));
         }
-        addTransaction(formInput);
+        addTransaction({ ...formInput, id:trnxList.length+1});
         toggleTrnxModal();
     }
 
