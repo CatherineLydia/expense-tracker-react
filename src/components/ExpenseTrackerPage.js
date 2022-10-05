@@ -1,8 +1,8 @@
 import { createContext, useState } from "react"
 import { Container, Row } from "reactstrap"
-import AddTransaction from "./AddTransactionComponent"
 import Balance from "./BalanceComponent"
 import IncomeExpense from "./IncomeExpenseComponent"
+import Transaction from "./TransactionComponent"
 
 export const SetIncomeContext = createContext();
 export const SetExpenseContext = createContext();
@@ -25,7 +25,7 @@ const ExpenseTrackerPage = () => {
             <Row style={{ marginTop: "10%" }}>
                 <SetIncomeContext.Provider value={setIncomeAmt}>
                     <SetExpenseContext.Provider value={setExpenseAmt}>
-                        <AddTransaction />
+                        <Transaction />
                     </SetExpenseContext.Provider>
                 </SetIncomeContext.Provider>
             </Row>
